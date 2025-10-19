@@ -2,13 +2,13 @@ extends Node
 
 # !!! ADD PATHS TO OBS SCENES
 #preload obtsacles
-var bevo
+var bevo = preload("res://scenes/Game/Obstacles/bevo.tscn")
 var tiger
 var mustang
-var veo
+var veo = preload("res://scenes/Game/Obstacles/veo.tscn")
 var zach
 var frog
-var obstacle_types: = [bevo, tiger, mustang, veo] #array for normal obstacles
+var obstacle_types: = [bevo, veo] #array for normal obstacles
 var active_obstacles: Array
 #!!! CHANGE TO FIT REV HEIGHT !!!
 var frog_heights: = [200, 390] #heights for frog to spawn
@@ -50,6 +50,12 @@ enum Obstacle {
 	LSU
 }
 
+# rev animation state
+const rev_idle = "IDLE"
+const rev_ollie = "OLLIE"
+const rev_kf = "KICKFLIP"
+var rev_state = rev_idle
+
 signal score_update(score)
 
 
@@ -77,12 +83,18 @@ func new_game():
 	#reset rev and camera
 	$Rev.position = REV_START_POS
 	$Rev.velocity = Vector2i(0, 0)
+	rev_state = rev_idle
+	_animate_rev(rev_state)
 	$Skateboard.position = BOARD_START_POS
 	$Skateboard.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
 	$Ground.position = Vector2i(0, 0)
 
 	#$GameOver.hide()
+
+func _animate_rev(state):
+	$Rev/AnimatedSprite2D.animation = state
+
 
 #called every frame; delta is elasped time since last frame
 func _process(delta):
@@ -92,7 +104,7 @@ func _process(delta):
 		#speed up and adjust difficulty
 		speed = START_SPEED + speed_change / SPEED_MODIFIER #gradually increases speed as score increases
 		speed_change += speed
-		#print(speed)
+		
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
 		adjust_difficulty()
@@ -102,6 +114,7 @@ func _process(delta):
 		
 		#move dino and camera
 		$Rev.position.x += speed
+		$Skateboard.position.x += speed
 		$Camera2D.position.x += speed
 		
 		# !!! UPDATE SCORE WHEN TRICK IS PERFORMED??? !!!
@@ -119,8 +132,10 @@ func _process(delta):
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
 		
-	elif Input.is_action_pressed("ui_accept"):
+	elif Input.is_anything_pressed():
 		game_running = true
+		$HUD.get_node("StartLabel").hide()
+
 
 func generate_obs():
 	#genrerate ground obstacle
@@ -181,4 +196,4 @@ func game_over():
 	get_tree().paused = true #pauses whole game
 	game_running = false
 	Global.live_score = score
-	get_tree().change_scene_to_file("res://scenes/end_scene.tscn")
+	get_tree().call_deferred("change_scene_to_file","res://scenes/States/end_scene.tscn")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4wi7viwjkfbd"]
+
+[ext_resource type="Texture2D" uid="uid://gtdg2ep6rwtr" path="res://assets/Obstacles/veo.png" id="1_cgd80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avek8"]
+size = Vector2(56, 28)
+
+[node name="Veo" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_cgd80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_avek8")
