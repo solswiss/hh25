@@ -12,3 +12,7 @@ theme = ExtResource("1_ahhtf")
 [node name="HighScoreLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="StartLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

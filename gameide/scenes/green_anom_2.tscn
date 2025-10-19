@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4y3jys1gu5m3"]
+
+[ext_resource type="Texture2D" uid="uid://hqcbljkgdy7d" path="res://assets/Background/green anomaly 2.png" id="1_7f8au"]
+
+[node name="GreenAnom2" type="Sprite2D"]
+texture = ExtResource("1_7f8au")
