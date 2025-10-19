@@ -1,22 +1,30 @@
 extends Node
 
+# !!! ADD PATHS TO OBS SCENES
 #preload obtsacles
-#var stump_scene = preload("res://scenes/stump.tscn")
-#var rock_scene = preload("res://scenes/rock.tscn")
-#var barrel_scene = preload("res://scenes/barrel.tscn")
-#var bird_scene = preload("res://scenes/bird.tscn")
-#var obstacle_types: = [stump_scene, rock_scene, barrel_scene]
-var obstacles: Array
-#var bird_heights: = [200, 390] #heights for frog to spawn
+var bevo
+var tiger
+var mustang
+var veo
+var zach
+var frog
+var obstacle_types: = [bevo, tiger, mustang, veo] #array for normal obstacles
+var active_obstacles: Array
+#!!! CHANGE TO FIT REV HEIGHT !!!
+var frog_heights: = [200, 390] #heights for frog to spawn
+# !!! need to give value above screen
+var zach_spawn_height: int
 
 #game consts
+# !!! CHANGE TO FIT OUR BACKGROUND !!!
 const REV_START_POS: = Vector2i(150,485)
 const CAM_START_POS: = Vector2i(576, 324)
 const START_SPEED: float = 10.0
 const MAX_SPEED: int = 25
 const SPEED_MODIFIER: int = 5000
 const SCORE_MODIFIER: int = 10
-const MAX_DIFFICULTY: int = 2
+const MED_DIFFICULTY: int = 2 #when flying obstacles start appearing
+const MAX_DIFFICULTY: int = 5
 
 #game vars
 var screen_size: Vector2i
@@ -34,12 +42,12 @@ var last_obs
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
-	# !!! change to end screen !!!
+	# !!! CHANGE TO END SCREEN !!!
 	#$GameOver.get_node("Button").pressed.connect(new_game) #when button pressed call new_game
 	new_game()
 
 func new_game():
-	game_running = false
+	#game_running = false #i forogt what this does
 	get_tree().paused = false
 	
 	#reset vars
@@ -49,9 +57,9 @@ func new_game():
 	difficulty = 0
 	
 	#reset obstacles
-	for obs in obstacles:
+	for obs in active_obstacles:
 		obs.queue_free()
-	obstacles.clear()
+	active_obstacles.clear()
 	
 	#reset rev and camera
 	$Rev.position = REV_START_POS
@@ -89,7 +97,7 @@ func _process(delta):
 			$Ground.position.x += screen_size.x
 			
 		#remove off screen obs
-		for obs in obstacles:
+		for obs in active_obstacles:
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
 		
@@ -98,38 +106,39 @@ func _process(delta):
 			game_running = true
 			$HUD.get_node("StartLabel").hide()
 
-# !!! CHANGE TO CREATE GROUPS OF OBSTACLES INSTEAD !!!
 func generate_obs():
 	#genrerate ground obstacle
-	if obstacles.is_empty() or last_obs.position.x < score + randi_range(300,500): #instead of using timer, add obstacle once previous obstacle is psat a random point
-		var obs_type = obstacle_types[randi() % obstacle_types.size()]
-		var obs
-		var max_obs = difficulty + 1 #lets obstacles generate as clusters as difficulty increases
-		for i in range(randi() % max_obs + 1):
-			obs = obs_type.instantiate()
+	if active_obstacles.is_empty() or last_obs.position.x < score + randi_range(300,500): #instead of using timer, add obstacle once previous obstacle is psat a random point
+		var obs	
+		#additional random chance to spawn a frog
+		if difficulty >= MED_DIFFICULTY and randi()%2 == 0:
+			obs = frog.instantiate()
+			var frog_x: int = screen_size.x + speed_change + 100
+			var frog_y: int = frog_heights[randi() % frog_heights.size()]
+			add_obs(obs, frog_x, frog_y)
+		elif difficulty == MAX_DIFFICULTY and (randi()%5) == 0:
+			obs = zach.instantiate()
+			var zach_x: int = screen_size.x + speed_change + 100
+			var zach_y: int = zach_spawn_height
+			add_obs(obs, zach_x, zach_y)
+		else:
+			obs = obstacle_types[randi() % obstacle_types.size()].instantiate()
 			var obs_height = obs.get_node("Sprite2D").texture.get_height() #asking for height of obs
 			var obs_scale = obs.get_node("Sprite2D").scale
-			var obs_x: int = screen_size.x + score + 100 + (i*100) #+score bc game is const moving to the left; +100 for buffer; i*100 so clusters obs will appear one after another
+			var obs_x: int = screen_size.x + speed_change + 100 #+speed_change bc game is const moving to the left; +100 for buffer
 			var obs_y: int = screen_size.y - ground_height - (obs_height*obs_scale.y /2) + 5
-			last_obs = obs
 			add_obs(obs, obs_x, obs_y)
-		#additional random cahnce to spawn a bird
-		if difficulty == MAX_DIFFICULTY:
-			if (randi()%2 ) == 0: #50/50 chance
-				obs = bird_scene.instantiate()
-				var obs_x: int = screen_size.x + score + 100
-				var obs_y: int = bird_heights[randi() % bird_heights.size()]
-				add_obs(obs, obs_x, obs_y)
+		last_obs = obs
 	
 func add_obs(obs, x, y):
 	obs.position = Vector2i(x, y)
 	obs.body_entered.connect(hit_obs) #hit_obs will trigger whenever body_entered happens
 	add_child(obs)
-	obstacles.append(obs)
+	active_obstacles.append(obs)
 	
 func remove_obs(obs):
 	obs.queue_free() #removes obstacle
-	obstacles.erase(obs) #remove from array
+	active_obstacles.erase(obs) #remove from array
 
 func hit_obs(body):
 	if body.name == "Rev":
@@ -144,7 +153,7 @@ func check_high_score():
 		$HUD.get_node("HighScoreLabel").text = "HIGH SCORE: " + str(high_score)
 
 func adjust_difficulty():
-	difficulty = score/SPEED_MODIFIER
+	difficulty = speed_change/SPEED_MODIFIER
 	if difficulty > MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
 

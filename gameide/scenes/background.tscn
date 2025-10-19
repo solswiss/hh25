@@ -1,13 +1,36 @@
-[gd_scene format=3 uid="uid://udusf6fm82fr"]
+[gd_scene load_steps=4 format=3 uid="uid://udusf6fm82fr"]
+
+[ext_resource type="Texture2D" uid="uid://dr8qcmehbc7cc" path="res://assets/sky.png" id="1_jougr"]
+[ext_resource type="Texture2D" uid="uid://ba7k1i630p52s" path="res://assets/cloud.png" id="2_cbsqf"]
+[ext_resource type="Texture2D" uid="uid://drwc1uw8ka8xk" path="res://assets/background buildings.png" id="3_wisxt"]
 
 [node name="Background" type="ParallaxBackground"]
 
 [node name="sky" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_jougr")
+centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+[node name="clouds" type="Sprite2D" parent="ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_cbsqf")
+centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+[node name="background buildings" type="Sprite2D" parent="ParallaxLayer2"]
+scale = Vector2(4, 4)
+texture = ExtResource("3_wisxt")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+
+[node name="frontgroud buildings" type="Sprite2D" parent="ParallaxLayer3"]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
