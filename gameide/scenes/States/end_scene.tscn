@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://rcr7gtbh76n"]
+
+[ext_resource type="Theme" uid="uid://c4jbmdgdjflr4" path="res://UI/global.tres" id="1_nld2j"]
+[ext_resource type="Script" uid="uid://derdsqcmymd5x" path="res://scenes/States/end_scene.gd" id="1_s7dif"]
+
+[node name="EndScene" type="Node2D"]
+script = ExtResource("1_s7dif")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_nld2j")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ScoreText" type="Label" parent="Control/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Score:"
+
+[node name="ScoreLabel" type="Label" parent="Control/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "000000000"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="HighScoreText" type="Label" parent="Control/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "High Score:"
+
+[node name="HighScoreLabel" type="Label" parent="Control/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "999999999"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
