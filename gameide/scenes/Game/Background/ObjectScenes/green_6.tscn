@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://c8wtl8cswfqf" path="res://assets/Background/green6.png" id="1_o2s8s"]
 
 [node name="green6" type="Sprite2D"]
+texture_filter = 1
 texture = ExtResource("1_o2s8s")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8fc7vkkrbsd8"]
+
+[ext_resource type="Texture2D" uid="uid://div4tfvrbegh7" path="res://assets/Background/Foreground/fore_tree1_anomaly.png" id="1_yhwnj"]
+
+[node name="Fore_tree_anomaly_1" type="Sprite2D"]
+texture = ExtResource("1_yhwnj")

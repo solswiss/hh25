@@ -2,13 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://c4jbmdgdjflr4" path="res://UI/global.tres" id="1_c4vmg"]
 
-[node name="HUD" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-theme = ExtResource("1_c4vmg")
+[node name="HUD" type="CanvasLayer"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
 offset_left = 64.0
 offset_top = 64.0
 offset_right = 856.0
@@ -22,23 +18,25 @@ text = "000000000"
 
 [node name="HighScoreLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_c4vmg")
 text = "000000000"
 
 [node name="StartLabel" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 591.0
-offset_top = 494.0
-offset_right = 1339.0
-offset_bottom = 554.0
+offset_left = -748.0
+offset_top = -60.0
+offset_right = 748.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_c4vmg")
 theme_override_colors/font_outline_color = Color(0.40593854, 0.0059638093, 0.13666314, 1)
 theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 128
 text = "Press any key to start"
 horizontal_alignment = 1
 vertical_alignment = 2

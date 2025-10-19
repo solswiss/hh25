@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3iq16cupw5el"]
+
+[ext_resource type="Texture2D" uid="uid://b5e5fukibnu7w" path="res://assets/Background/Foreground/fore_tree1.png" id="1_1qd32"]
+
+[node name="Fore_tree_1" type="Sprite2D"]
+texture = ExtResource("1_1qd32")

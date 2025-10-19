@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://hqcbljkgdy7d" path="res://assets/Background/green anomaly 2.png" id="1_7f8au"]
 
 [node name="GreenAnom2" type="Sprite2D"]
+texture_filter = 1
 texture = ExtResource("1_7f8au")

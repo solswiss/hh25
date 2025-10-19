@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://udusf6fm82fr"]
+[gd_scene load_steps=23 format=3 uid="uid://udusf6fm82fr"]
 
 [ext_resource type="Script" uid="uid://dbjq3y6wwg28i" path="res://scenes/Game/Background/background.gd" id="1_1tmhi"]
 [ext_resource type="Texture2D" uid="uid://dr8qcmehbc7cc" path="res://assets/Background/sky.png" id="1_jougr"]
@@ -6,6 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://drwc1uw8ka8xk" path="res://assets/Background/background buildings.png" id="3_wisxt"]
 [ext_resource type="Texture2D" uid="uid://im7s2ggkfarf" path="res://assets/Background/frontground buildings 1.png" id="4_wax1t"]
 [ext_resource type="Texture2D" uid="uid://jwafnot77bok" path="res://assets/Background/frontgroud building 2.png" id="5_1tmhi"]
+[ext_resource type="PackedScene" uid="uid://bernro53dcoaa" path="res://scenes/Game/Background/ObjectScenes/green_1.tscn" id="5_ygcsa"]
+[ext_resource type="PackedScene" uid="uid://dyiyghn67l2l4" path="res://scenes/Game/Background/ObjectScenes/green_2.tscn" id="6_88ee2"]
+[ext_resource type="PackedScene" uid="uid://co1pm00llgtb7" path="res://scenes/Game/Background/ObjectScenes/green_3.tscn" id="7_1m2x0"]
+[ext_resource type="PackedScene" uid="uid://xqj8i4ehw876" path="res://scenes/Game/Background/ObjectScenes/green_4.tscn" id="8_gn1fi"]
+[ext_resource type="PackedScene" uid="uid://whwws81exsr3" path="res://scenes/Game/Background/ObjectScenes/green_5.tscn" id="9_s0b35"]
+[ext_resource type="PackedScene" uid="uid://vhvbnlv33by" path="res://scenes/Game/Background/ObjectScenes/green_6.tscn" id="10_hrqbv"]
+[ext_resource type="PackedScene" uid="uid://bmt13k1t2dwky" path="res://scenes/Game/Background/ObjectScenes/green_7.tscn" id="11_8yopg"]
+[ext_resource type="PackedScene" uid="uid://bvyr8iuloccyd" path="res://scenes/Game/Background/ObjectScenes/green_8.tscn" id="12_aeeut"]
+[ext_resource type="PackedScene" uid="uid://cdtjpmtqhtajw" path="res://scenes/Game/Background/ObjectScenes/green_anom_1.tscn" id="13_h3050"]
+[ext_resource type="PackedScene" uid="uid://b4y3jys1gu5m3" path="res://scenes/Game/Background/ObjectScenes/green_anom_2.tscn" id="14_m40rq"]
+[ext_resource type="PackedScene" uid="uid://c6b4qwcbwo1vx" path="res://scenes/Game/Background/ObjectScenes/fore_bush_1.tscn" id="17_3h3wq"]
+[ext_resource type="PackedScene" uid="uid://22d241dijcqw" path="res://scenes/Game/Background/ObjectScenes/fore_bush_2.tscn" id="18_yuciq"]
+[ext_resource type="PackedScene" uid="uid://d3iq16cupw5el" path="res://scenes/Game/Background/ObjectScenes/fore_tree_1.tscn" id="19_vabh8"]
+[ext_resource type="PackedScene" uid="uid://cnfojc6y4ibhy" path="res://scenes/Game/Background/ObjectScenes/fore_tree_2.tscn" id="20_rcldd"]
+[ext_resource type="PackedScene" uid="uid://8fc7vkkrbsd8" path="res://scenes/Game/Background/ObjectScenes/fore_tree_anomaly_1.tscn" id="21_805b7"]
+[ext_resource type="PackedScene" uid="uid://cado852briwk8" path="res://scenes/Game/Background/ObjectScenes/fore_tree_anomoly_2.tscn" id="22_54du1"]
 
 [node name="Background" type="ParallaxBackground"]
 script = ExtResource("1_1tmhi")
@@ -36,20 +52,90 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_wisxt")
 centered = false
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+[node name="green parallax" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1408, 0)
+
+[node name="green1" parent="green parallax" instance=ExtResource("5_ygcsa")]
+position = Vector2(96, 768)
+scale = Vector2(4, 4)
+
+[node name="green2" parent="green parallax" instance=ExtResource("6_88ee2")]
+position = Vector2(240, 816)
+scale = Vector2(4, 4)
+
+[node name="green3" parent="green parallax" instance=ExtResource("7_1m2x0")]
+position = Vector2(816, 784)
+scale = Vector2(4, 4)
+
+[node name="green4" parent="green parallax" instance=ExtResource("8_gn1fi")]
+position = Vector2(616, 768)
+scale = Vector2(4, 4)
+
+[node name="green5" parent="green parallax" instance=ExtResource("9_s0b35")]
+position = Vector2(944, 776)
+scale = Vector2(4, 4)
+
+[node name="green6" parent="green parallax" instance=ExtResource("10_hrqbv")]
+position = Vector2(1112, 808)
+scale = Vector2(4, 4)
+
+[node name="green7" parent="green parallax" instance=ExtResource("11_8yopg")]
+position = Vector2(488, 736)
+scale = Vector2(4, 4)
+
+[node name="green8" parent="green parallax" instance=ExtResource("12_aeeut")]
+position = Vector2(1168, 720)
+scale = Vector2(4, 4)
+
+[node name="GreenAnom1" parent="green parallax" instance=ExtResource("13_h3050")]
+position = Vector2(96, 768)
+scale = Vector2(4, 4)
+
+[node name="GreenAnom2" parent="green parallax" instance=ExtResource("14_m40rq")]
+position = Vector2(1344, 800)
+scale = Vector2(4, 4)
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(7680, 0)
 
-[node name="frontground buildings 1" type="Sprite2D" parent="ParallaxLayer3"]
+[node name="frontground buildings 1" type="Sprite2D" parent="ParallaxLayer4"]
 texture_filter = 1
 position = Vector2(0, -240)
 scale = Vector2(4, 4)
 texture = ExtResource("4_wax1t")
 centered = false
 
-[node name="frontground buildings 2" type="Sprite2D" parent="ParallaxLayer3"]
+[node name="frontground buildings 2" type="Sprite2D" parent="ParallaxLayer4"]
 texture_filter = 1
 position = Vector2(3840, -240)
 scale = Vector2(4, 4)
 texture = ExtResource("5_1tmhi")
 centered = false
+
+[node name="fore parallax" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(3325, 0)
+
+[node name="Fore_bush1" parent="fore parallax" instance=ExtResource("17_3h3wq")]
+position = Vector2(1056, 816)
+
+[node name="Fore_bush_2" parent="fore parallax" instance=ExtResource("18_yuciq")]
+position = Vector2(306, 810)
+
+[node name="Fore_tree_1" parent="fore parallax" instance=ExtResource("19_vabh8")]
+position = Vector2(3112, 696)
+scale = Vector2(1.5, 1.5)
+
+[node name="Fore_tree_2" parent="fore parallax" instance=ExtResource("20_rcldd")]
+position = Vector2(1272, 672)
+scale = Vector2(2, 2)
+
+[node name="Fore_tree_anomaly_1" parent="fore parallax" instance=ExtResource("21_805b7")]
+position = Vector2(3112.0002, 696)
+scale = Vector2(1.5, 1.5)
+
+[node name="Fore_tree_anomoly_2" parent="fore parallax" instance=ExtResource("22_54du1")]
+position = Vector2(1272, 672)
+scale = Vector2(2, 2)

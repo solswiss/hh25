@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://22d241dijcqw"]
+
+[ext_resource type="Texture2D" uid="uid://heelayot4teg" path="res://assets/Background/Foreground/fore_bush2.png" id="1_yc8dx"]
+
+[node name="Fore_bush_2" type="Sprite2D"]
+texture = ExtResource("1_yc8dx")
