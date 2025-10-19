@@ -17,8 +17,9 @@ var zach_spawn_height: int
 
 #game consts
 # !!! CHANGE TO FIT OUR BACKGROUND !!!
-const REV_START_POS: = Vector2i(150,485)
-const CAM_START_POS: = Vector2i(576, 324)
+const REV_START_POS: = Vector2i(280,744)
+const BOARD_START_POS: = Vector2i(280,792)
+const CAM_START_POS: = Vector2i(960, 540)
 const START_SPEED: float = 10.0
 const MAX_SPEED: int = 25
 const SPEED_MODIFIER: int = 5000
@@ -55,7 +56,7 @@ signal score_update(score)
 #called when the node enters scene tree or first time
 func _ready():
 	screen_size = get_window().size
-	ground_height = $Background.get_node("ground").texture.get_height()
+	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	#$GameOver.get_node("Button").pressed.connect(new_game) #when button pressed call new_game
 	new_game()
 
@@ -76,8 +77,10 @@ func new_game():
 	#reset rev and camera
 	$Rev.position = REV_START_POS
 	$Rev.velocity = Vector2i(0, 0)
+	$Skateboard.position = BOARD_START_POS
+	$Skateboard.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
-	$Background.get_node("ground").position = Vector2i(0, 0)
+	$Ground.position = Vector2i(0, 0)
 
 	#$GameOver.hide()
 
