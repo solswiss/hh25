@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="hh25"
+run/main_scene="uid://b8knkw6qm51xl"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +25,14 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[dotnet]
+
+project/assembly_name="hh25"
+
+[global_group]
+
+obstacles=""
 
 [rendering]
 
