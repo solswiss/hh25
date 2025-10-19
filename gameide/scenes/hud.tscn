@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dlk2y76qh57sc"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HighScoreLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
