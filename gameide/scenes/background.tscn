@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://udusf6fm82fr"]
+[gd_scene load_steps=8 format=3 uid="uid://udusf6fm82fr"]
 
-[ext_resource type="Texture2D" uid="uid://dr8qcmehbc7cc" path="res://assets/sky.png" id="1_jougr"]
-[ext_resource type="Texture2D" uid="uid://ba7k1i630p52s" path="res://assets/cloud.png" id="2_cbsqf"]
-[ext_resource type="Texture2D" uid="uid://drwc1uw8ka8xk" path="res://assets/background buildings.png" id="3_wisxt"]
+[ext_resource type="Script" uid="uid://dbjq3y6wwg28i" path="res://scenes/background.gd" id="1_1tmhi"]
+[ext_resource type="Texture2D" path="res://assets/sky.png" id="1_jougr"]
+[ext_resource type="Texture2D" path="res://assets/cloud.png" id="2_cbsqf"]
+[ext_resource type="Texture2D" path="res://assets/background buildings.png" id="3_wisxt"]
+[ext_resource type="Texture2D" path="res://assets/frontground buildings 1.png" id="4_wax1t"]
+[ext_resource type="Texture2D" path="res://assets/frontgroud building 2.png" id="5_1tmhi"]
+[ext_resource type="Texture2D" path="res://assets/ground.png" id="6_l5f8m"]
 
 [node name="Background" type="ParallaxBackground"]
+script = ExtResource("1_1tmhi")
 
 [node name="sky" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -13,6 +18,8 @@ texture = ExtResource("1_jougr")
 centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(3840, 0)
 
 [node name="clouds" type="Sprite2D" parent="ParallaxLayer"]
 texture_filter = 1
@@ -21,16 +28,35 @@ texture = ExtResource("2_cbsqf")
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(3840, 0)
 
 [node name="background buildings" type="Sprite2D" parent="ParallaxLayer2"]
+texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("3_wisxt")
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(7680, 0)
 
-[node name="frontgroud buildings" type="Sprite2D" parent="ParallaxLayer3"]
+[node name="frontground buildings 1" type="Sprite2D" parent="ParallaxLayer3"]
+texture_filter = 1
+position = Vector2(0, -240)
+scale = Vector2(4, 4)
+texture = ExtResource("4_wax1t")
+centered = false
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+[node name="frontground buildings 2" type="Sprite2D" parent="ParallaxLayer3"]
+texture_filter = 1
+position = Vector2(3840, -240)
+scale = Vector2(4, 4)
+texture = ExtResource("5_1tmhi")
+centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
+[node name="ground" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("6_l5f8m")
+centered = false

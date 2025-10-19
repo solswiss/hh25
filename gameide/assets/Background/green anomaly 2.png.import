@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drwc1uw8ka8xk"
-path="res://.godot/imported/background buildings.png-d4fd68cf1138c8864f45e8530fd06f94.ctex"
+uid="uid://hqcbljkgdy7d"
+path="res://.godot/imported/green anomaly 2.png-39f73c279cba29f75615650c41c0d208.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background buildings.png"
-dest_files=["res://.godot/imported/background buildings.png-d4fd68cf1138c8864f45e8530fd06f94.ctex"]
+source_file="res://assets/Background/green anomaly 2.png"
+dest_files=["res://.godot/imported/green anomaly 2.png-39f73c279cba29f75615650c41c0d208.ctex"]
 
 [params]
 
