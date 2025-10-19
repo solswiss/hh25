@@ -69,4 +69,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Restart"
 
+[connection signal="mouse_entered" from="Control/VBoxContainer2/ReplayButton" to="." method="_on_replay_button_mouse_entered"]
 [connection signal="pressed" from="Control/VBoxContainer2/ReplayButton" to="." method="_on_replay_button_pressed"]

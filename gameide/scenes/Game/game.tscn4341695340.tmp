@@ -26,5 +26,3 @@ position = Vector2(280, 744)
 scale = Vector2(3, 3)
 
 [node name="HUD" parent="." instance=ExtResource("6_54y65")]
-
-[connection signal="new_combo" from="Rev" to="." method="_on_rev_new_combo"]

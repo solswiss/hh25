@@ -40,3 +40,12 @@ theme_override_font_sizes/font_size = 128
 text = "Press any key to start"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="ComboLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 904.0
+offset_top = 384.0
+offset_right = 1028.0
+offset_bottom = 444.0
+text = "ABC"

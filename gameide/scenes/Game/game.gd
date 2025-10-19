@@ -57,7 +57,7 @@ const rev_kf = "KICKFLIP"
 var rev_state = rev_idle
 
 signal score_update(score)
-
+signal new_obstacle()
 
 #called when the node enters scene tree or first time
 func _ready():
@@ -65,6 +65,17 @@ func _ready():
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	#$GameOver.get_node("Button").pressed.connect(new_game) #when button pressed call new_game
 	new_game()
+
+
+func combo_prompt(combo):
+	$HUD/ComboLabel.text = ""
+	var j = 0
+	for i in combo:
+		$HUD/ComboLabel.text += i
+		if j < combo.size()-1:
+			$HUD/ComboLabel.text += "+"
+		j += 1
+
 
 func new_game():
 	game_running = false #i forogt what this does
@@ -84,16 +95,12 @@ func new_game():
 	$Rev.position = REV_START_POS
 	$Rev.velocity = Vector2i(0, 0)
 	rev_state = rev_idle
-	_animate_rev(rev_state)
 	$Skateboard.position = BOARD_START_POS
 	$Skateboard.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
 	$Ground.position = Vector2i(0, 0)
 
 	#$GameOver.hide()
-
-func _animate_rev(state):
-	$Rev/AnimatedSprite2D.animation = state
 
 
 #called every frame; delta is elasped time since last frame
@@ -131,10 +138,13 @@ func _process(delta):
 		for obs in active_obstacles:
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
+			elif obs.position.x < $Rev.position.x:
+				new_obstacle.emit()
 		
 	elif Input.is_anything_pressed():
 		game_running = true
 		$HUD.get_node("StartLabel").hide()
+		$HUD/ComboLabel.show()
 
 
 func generate_obs():
@@ -197,3 +207,7 @@ func game_over():
 	game_running = false
 	Global.live_score = score
 	get_tree().call_deferred("change_scene_to_file","res://scenes/States/end_scene.tscn")
+
+
+func _on_rev_new_combo(combo: Variant) -> void:
+	combo_prompt(combo)
