@@ -11,3 +11,10 @@ func _ready() -> void:
 func _on_replay_button_pressed() -> void:
 	print("replay")
 	get_tree().change_scene_to_file("res://scenes/Game/game.tscn")
+
+
+func _on_replay_button_mouse_entered() -> void:
+	#if(Input.is_action_pressed("mouse")):
+		print("test") # Replace with function body.
+		get_tree().change_scene_to_file("res://scenes/Game/game.tscn")
+  

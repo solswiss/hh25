@@ -25,7 +25,7 @@ func _physics_process(delta):
 
 	if is_on_floor():
 		if not get_parent().game_running:
-			$AnimatedSprite2D.play("idle")
+			$AnimatedSprite2D.play("IDLE")
 		else:
 			$RunCol.disabled = false
 
@@ -39,10 +39,10 @@ func _physics_process(delta):
 				if all_pressed:
 					velocity.y = JUMP_SPEED
 					released = false
-					$AnimatedSprite2D.play("jump")
+					$AnimatedSprite2D.play("OLLIE")
 					generate_combo()
 				else:
-					$AnimatedSprite2D.play("idle")
+					$AnimatedSprite2D.play("IDLE")
 			elif not Input.is_anything_pressed():
 				released = true
 
