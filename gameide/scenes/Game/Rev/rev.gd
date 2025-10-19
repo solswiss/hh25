@@ -7,9 +7,12 @@ var keys : Array = ["up", "down", "left", "right", "w", "s", "d", "a"]
 var combo : Array = []
 var released : bool = true
 
+signal new_combo(combo)
+
 func _ready():
 	randomize()
 	generate_combo()
+	get_parent().connect("new_obstacle",generate_combo)
 
 func generate_combo():
 	combo.clear()
@@ -19,15 +22,15 @@ func generate_combo():
 		combo.append(temp_keys[rand_index])
 		temp_keys.remove_at(rand_index)
 	print("New combo:", combo)
+	emit_signal("new_combo",combo)
+	
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 
 	if is_on_floor():
 		if not get_parent().game_running:
-			$AnimatedSprite2D.play("idle")
-		else:
-			$RunCol.disabled = false
+			$AnimatedSprite2D.play("IDLE")
 
 			if released:
 				var all_pressed = true
@@ -39,11 +42,9 @@ func _physics_process(delta):
 				if all_pressed:
 					velocity.y = JUMP_SPEED
 					released = false
-					$AnimatedSprite2D.play("jump")
-					generate_combo()
+					$AnimatedSprite2D.play("OLLIE")
 				else:
-					$AnimatedSprite2D.play("idle")
+					$AnimatedSprite2D.play("IDLE")
+					$AnimatedSprite2D.play("IDLE")
 			elif not Input.is_anything_pressed():
 				released = true
-
-	move_and_slide()
