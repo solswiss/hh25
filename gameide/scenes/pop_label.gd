@@ -3,6 +3,7 @@ class_name PopLabel
 
 # customs
 @export var color: Color = Color.WHITE
+@export var using_color_grades = false
 @export var max_pop: float = 0.5
 @export var font_size: int = 16
 @export var value: int = 0:
@@ -17,6 +18,8 @@ var digit_effects: Dictionary[String, float] = {
 }
 
 var tweens: Dictionary[int, Tween] = {}
+
+var color_grades = [Color.WHITE, Color.AQUAMARINE, Color.YELLOW_GREEN, Color.YELLOW, Color.DEEP_PINK]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,12 +38,15 @@ func _draw() -> void:
 			0,
 			Vector2(scale,scale)
 		)
+		var col = Color.WHITE
+		if using_color_grades:
+			col = _get_grade(value)
 		draw_char(
 			get_theme_default_font(),
 			Vector2.ZERO,
 			digits[i],
 			font_size,
-			lerp(color, Color.BLUE, effect)
+			lerp(color, col, effect)
 		)
 		cx += digit_size.x
 
@@ -69,3 +75,16 @@ func _digit_effect_tween(digit:int):
 	var tween = create_tween()
 	tween.tween_property(self,"digit_effects:%d"%digit,0.0,0.5)
 	tweens[digit] = tween
+
+
+func _get_grade(val:int):
+	if val >= Global.COMBO_MIN*12:
+		return 4
+	elif val >= Global.COMBO_MIN*7:
+		return 3
+	elif val >= Global.COMBO_MIN*3:
+		return 2
+	elif val >= Global.COMBO_MIN:
+		return 1
+	else:
+		return 0

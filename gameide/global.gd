@@ -1,8 +1,13 @@
 extends Node
 
 
+
+
 var high_score = 0
 const FILE_PATH = "user:://game_data.save"
+
+# Game
+const COMBO_MIN = 1000
 
 func set_score(score):
 	if score>high_score:

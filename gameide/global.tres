@@ -9,7 +9,7 @@
 [resource]
 default_font = ExtResource("1_6e8se")
 default_font_size = 16
-Button/font_sizes/font_size = 32
+Button/font_sizes/font_size = 128
 Button/styles/focus = SubResource("StyleBoxEmpty_u5ahv")
 Button/styles/hover = ExtResource("2_2vmwp")
 Button/styles/hover_pressed = ExtResource("2_2vmwp")
