@@ -1,16 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3eglwkyaxvfp"]
+[gd_scene load_steps=7 format=3 uid="uid://b3eglwkyaxvfp"]
 
 [ext_resource type="Script" uid="uid://bpyruucbnlsji" path="res://scenes/Game/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bp1x3yvx300gc" path="res://scenes/Game/Rev/rev.tscn" id="2_bfxw3"]
+[ext_resource type="PackedScene" uid="uid://d0lgsdog0rg55" path="res://scenes/Game/Background/ground.tscn" id="3_7dfdq"]
 [ext_resource type="PackedScene" uid="uid://6gqlxxfv0jh4" path="res://scenes/Game/Board/skateboard.tscn" id="4_7dfdq"]
 [ext_resource type="PackedScene" uid="uid://udusf6fm82fr" path="res://scenes/Game/Background/background.tscn" id="4_54y65"]
+[ext_resource type="PackedScene" uid="uid://dlk2y76qh57sc" path="res://scenes/UI/hud.tscn" id="6_54y65"]
 
 [node name="Game" type="Node" groups=["Obstacles"]]
 script = ExtResource("1_uwrxv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
 
 [node name="Background" parent="." instance=ExtResource("4_54y65")]
+
+[node name="Ground" parent="." instance=ExtResource("3_7dfdq")]
 
 [node name="Skateboard" parent="." instance=ExtResource("4_7dfdq")]
 position = Vector2(288, 792)
@@ -19,3 +24,5 @@ scale = Vector2(3, 3)
 [node name="Rev" parent="." instance=ExtResource("2_bfxw3")]
 position = Vector2(280, 744)
 scale = Vector2(3, 3)
+
+[node name="HUD" parent="." instance=ExtResource("6_54y65")]
