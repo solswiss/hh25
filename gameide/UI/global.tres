@@ -1,17 +1,17 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://c4jbmdgdjflr4"]
 
-[ext_resource type="FontFile" uid="uid://tgiciuuyuexi" path="res://assets/UI/Roundberly.ttf" id="1_6e8se"]
-[ext_resource type="StyleBox" uid="uid://bc3470wwsd6jl" path="res://UI/button_normal.tres" id="1_u5ahv"]
-[ext_resource type="StyleBox" uid="uid://d2ph863xjvspr" path="res://UI/button_pressed.tres" id="2_2vmwp"]
+[ext_resource type="StyleBox" uid="uid://d2ph863xjvspr" path="res://UI/button_pressed.tres" id="1_ciqll"]
+[ext_resource type="StyleBox" uid="uid://bc3470wwsd6jl" path="res://UI/button_normal.tres" id="2_vf4n0"]
+[ext_resource type="FontFile" uid="uid://tgiciuuyuexi" path="res://assets/UI/Roundberly.ttf" id="3_h7yna"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5ahv"]
 
 [resource]
-default_font = ExtResource("1_6e8se")
-default_font_size = 16
+default_font = ExtResource("3_h7yna")
+default_font_size = 64
 Button/font_sizes/font_size = 128
 Button/styles/focus = SubResource("StyleBoxEmpty_u5ahv")
-Button/styles/hover = ExtResource("2_2vmwp")
-Button/styles/hover_pressed = ExtResource("2_2vmwp")
-Button/styles/normal = ExtResource("1_u5ahv")
-Button/styles/pressed = ExtResource("2_2vmwp")
+Button/styles/hover = ExtResource("1_ciqll")
+Button/styles/hover_pressed = ExtResource("1_ciqll")
+Button/styles/normal = ExtResource("2_vf4n0")
+Button/styles/pressed = ExtResource("1_ciqll")

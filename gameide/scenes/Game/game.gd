@@ -39,22 +39,33 @@ var difficulty
 var last_obs
 
 
+# obstacle/animation enum
+enum Obstacle {
+	VEO,
+	ZACHRY,
+	BEVO,
+	TCU,
+	SMU,
+	LSU
+}
+
+signal score_update(score)
+
+
 #called when the node enters scene tree or first time
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Background.get_node("ground").texture.get_height()
-	# !!! CHANGE TO END SCREEN !!!
 	#$GameOver.get_node("Button").pressed.connect(new_game) #when button pressed call new_game
 	new_game()
 
 func new_game():
-	#game_running = false #i forogt what this does
+	game_running = false #i forogt what this does
 	get_tree().paused = false
 	
 	#reset vars
 	score = 0
 	speed_change = 0
-	show_score()
 	difficulty = 0
 	
 	#reset obstacles
@@ -66,15 +77,15 @@ func new_game():
 	$Rev.position = REV_START_POS
 	$Rev.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
-	$Ground.position = Vector2i(0, 0)
-	
-	$HUD.get_node("StartLabel").show()
-	$HUD.get_node("HighScoreLabel").text = Global.high_score
-	$GameOver.hide()
+	$Background.get_node("ground").position = Vector2i(0, 0)
+
+	#$GameOver.hide()
 
 #called every frame; delta is elasped time since last frame
 func _process(delta):
 	if game_running:
+		if Input.is_key_pressed(KEY_R):
+			new_game()
 		#speed up and adjust difficulty
 		speed = START_SPEED + speed_change / SPEED_MODIFIER #gradually increases speed as score increases
 		speed_change += speed
@@ -92,26 +103,26 @@ func _process(delta):
 		
 		# !!! UPDATE SCORE WHEN TRICK IS PERFORMED??? !!!
 		#score = (score + speed) / SCORE_MODIFIER
-		show_score()
+		
+		#show_score()
+		score_update.emit(score)
 		
 		#update ground position
 		if $Camera2D.position.x - $Ground.position.x > screen_size.x * 1.5:
 			$Ground.position.x += screen_size.x
-			
+		
 		#remove off screen obs
 		for obs in active_obstacles:
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
 		
-	else:
-		#if Input.is_action_pressed("ui_accept"):
-			game_running = true
-			$HUD.get_node("StartLabel").hide()
+	elif Input.is_action_pressed("ui_accept"):
+		game_running = true
 
 func generate_obs():
 	#genrerate ground obstacle
 	if active_obstacles.is_empty() or last_obs.position.x < score + randi_range(300,500): #instead of using timer, add obstacle once previous obstacle is psat a random point
-		var obs	
+		var obs
 		#additional random chance to spawn a frog
 		if difficulty >= MED_DIFFICULTY and randi()%2 == 0:
 			obs = frog.instantiate()
@@ -135,6 +146,7 @@ func generate_obs():
 func add_obs(obs, x, y):
 	obs.position = Vector2i(x, y)
 	obs.body_entered.connect(hit_obs) #hit_obs will trigger whenever body_entered happens
+	obs.add_to_group("Obstacles")
 	add_child(obs)
 	active_obstacles.append(obs)
 	
