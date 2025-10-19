@@ -7,8 +7,8 @@ var tiger
 var mustang
 var veo = preload("res://scenes/Game/Obstacles/veo.tscn")
 var zach
-var frog
-var obstacle_types: = [bevo, veo] #array for normal obstacles
+var frog = preload("res://scenes/Game/Obstacles/tcu_frog.tscn")
+var obstacle_types: = [bevo, frog, veo] #array for normal obstacles
 var active_obstacles: Array
 #!!! CHANGE TO FIT REV HEIGHT !!!
 var frog_heights: = [200, 390] #heights for frog to spawn
@@ -17,7 +17,7 @@ var zach_spawn_height: int
 
 #game consts
 # !!! CHANGE TO FIT OUR BACKGROUND !!!
-const REV_START_POS: = Vector2i(280,744)
+const REV_START_POS: = Vector2i(280,800)
 const BOARD_START_POS: = Vector2i(280,792)
 const CAM_START_POS: = Vector2i(960, 540)
 const START_SPEED: float = 10.0
@@ -50,32 +50,22 @@ enum Obstacle {
 	LSU
 }
 
-# rev animation state
-const rev_idle = "IDLE"
-const rev_ollie = "OLLIE"
-const rev_kf = "KICKFLIP"
-var rev_state = rev_idle
-
 signal score_update(score)
-signal new_obstacle()
+signal new_obstacle(obs)
 
 #called when the node enters scene tree or first time
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	#$GameOver.get_node("Button").pressed.connect(new_game) #when button pressed call new_game
+	$Rev.connect("move",animate_board)
 	new_game()
+	$HUD/StartLabel.hide()
 
-
-func combo_prompt(combo):
-	$HUD/ComboLabel.text = ""
-	var j = 0
-	for i in combo:
-		$HUD/ComboLabel.text += i
-		if j < combo.size()-1:
-			$HUD/ComboLabel.text += "+"
-		j += 1
-
+func animate_board(move:String):
+	$Skateboard.get_node("AnimatedSprite2D").play(move)
+	score += 1000
+	show_score()
 
 func new_game():
 	game_running = false #i forogt what this does
@@ -85,16 +75,15 @@ func new_game():
 	score = 0
 	speed_change = 0
 	difficulty = 0
-	
+	'''
 	#reset obstacles
 	for obs in active_obstacles:
 		obs.queue_free()
 	active_obstacles.clear()
-	
+	'''
 	#reset rev and camera
 	$Rev.position = REV_START_POS
 	$Rev.velocity = Vector2i(0, 0)
-	rev_state = rev_idle
 	$Skateboard.position = BOARD_START_POS
 	$Skateboard.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
@@ -102,26 +91,26 @@ func new_game():
 
 	#$GameOver.hide()
 
-
 #called every frame; delta is elasped time since last frame
 func _process(delta):
+	print($Rev.position.y)
 	if game_running:
 		if Input.is_key_pressed(KEY_R):
 			new_game()
 		#speed up and adjust difficulty
 		speed = START_SPEED + speed_change / SPEED_MODIFIER #gradually increases speed as score increases
 		speed_change += speed
-		
+		#print(speed)
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
 		adjust_difficulty()
 		
-		#generate obstacles
-		generate_obs()
+		# generate obstacles
+		#generate_obs()
 		
 		#move dino and camera
-		$Rev.position.x += speed
 		$Skateboard.position.x += speed
+		$Rev.position.x = $Skateboard.position.x
 		$Camera2D.position.x += speed
 		
 		# !!! UPDATE SCORE WHEN TRICK IS PERFORMED??? !!!
@@ -133,42 +122,21 @@ func _process(delta):
 		#update ground position
 		if $Camera2D.position.x - $Ground.position.x > screen_size.x * 1.5:
 			$Ground.position.x += screen_size.x
-		
+	elif Input.is_action_pressed("ui_accept"):
+		game_running = true
+'''
 		#remove off screen obs
 		for obs in active_obstacles:
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
-			elif obs.position.x < $Rev.position.x:
-				new_obstacle.emit()
+	'''	
 		
-	elif Input.is_anything_pressed():
-		game_running = true
-		$HUD.get_node("StartLabel").hide()
-		$HUD/ComboLabel.show()
-
-
 func generate_obs():
 	#genrerate ground obstacle
 	if active_obstacles.is_empty() or last_obs.position.x < score + randi_range(300,500): #instead of using timer, add obstacle once previous obstacle is psat a random point
-		var obs
-		#additional random chance to spawn a frog
-		if difficulty >= MED_DIFFICULTY and randi()%2 == 0:
-			obs = frog.instantiate()
-			var frog_x: int = screen_size.x + speed_change + 100
-			var frog_y: int = frog_heights[randi() % frog_heights.size()]
-			add_obs(obs, frog_x, frog_y)
-		elif difficulty == MAX_DIFFICULTY and (randi()%5) == 0:
-			obs = zach.instantiate()
-			var zach_x: int = screen_size.x + speed_change + 100
-			var zach_y: int = zach_spawn_height
-			add_obs(obs, zach_x, zach_y)
-		else:
-			obs = obstacle_types[randi() % obstacle_types.size()].instantiate()
-			var obs_height = obs.get_node("Sprite2D").texture.get_height() #asking for height of obs
-			var obs_scale = obs.get_node("Sprite2D").scale
-			var obs_x: int = screen_size.x + speed_change + 100 #+speed_change bc game is const moving to the left; +100 for buffer
-			var obs_y: int = screen_size.y - ground_height - (obs_height*obs_scale.y /2) + 5
-			add_obs(obs, obs_x, obs_y)
+		var obs = obstacle_types.pick_random()
+		add_obs(obs, 1000, 750)
+		new_obstacle.emit(obs)
 		last_obs = obs
 	
 func add_obs(obs, x, y):
@@ -187,7 +155,7 @@ func hit_obs(body):
 		game_over()
 
 func show_score():
-	$HUD.get_node("ScoreLabel").text = "SCORE: " + str(score)
+	$HUD/VBoxContainer/ScoreLabel.text = "SCORE: " + str(score)
 
 func check_high_score():
 	if score > high_score:
@@ -206,8 +174,4 @@ func game_over():
 	get_tree().paused = true #pauses whole game
 	game_running = false
 	Global.live_score = score
-	get_tree().call_deferred("change_scene_to_file","res://scenes/States/end_scene.tscn")
-
-
-func _on_rev_new_combo(combo: Variant) -> void:
-	combo_prompt(combo)
+	get_tree().change_scene_to_file("res://scenes/end_scene.tscn")

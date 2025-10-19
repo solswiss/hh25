@@ -69,7 +69,7 @@ position = Vector2(816, 784)
 scale = Vector2(4, 4)
 
 [node name="green4" parent="green parallax" instance=ExtResource("8_gn1fi")]
-position = Vector2(616, 768)
+position = Vector2(616, 776)
 scale = Vector2(4, 4)
 
 [node name="green5" parent="green parallax" instance=ExtResource("9_s0b35")]
@@ -77,7 +77,7 @@ position = Vector2(944, 776)
 scale = Vector2(4, 4)
 
 [node name="green6" parent="green parallax" instance=ExtResource("10_hrqbv")]
-position = Vector2(1112, 808)
+position = Vector2(1112, 816)
 scale = Vector2(4, 4)
 
 [node name="green7" parent="green parallax" instance=ExtResource("11_8yopg")]
@@ -93,7 +93,7 @@ position = Vector2(96, 768)
 scale = Vector2(4, 4)
 
 [node name="GreenAnom2" parent="green parallax" instance=ExtResource("14_m40rq")]
-position = Vector2(1344, 800)
+position = Vector2(1344, 808)
 scale = Vector2(4, 4)
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
@@ -115,25 +115,28 @@ texture = ExtResource("5_1tmhi")
 centered = false
 
 [node name="fore parallax" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(3325, 0)
 
 [node name="Fore_bush1" parent="fore parallax" instance=ExtResource("17_3h3wq")]
-position = Vector2(1056, 816)
+position = Vector2(936, 784)
+scale = Vector2(2, 2)
 
 [node name="Fore_bush_2" parent="fore parallax" instance=ExtResource("18_yuciq")]
-position = Vector2(306, 810)
+position = Vector2(320, 784)
+scale = Vector2(2, 2)
 
 [node name="Fore_tree_1" parent="fore parallax" instance=ExtResource("19_vabh8")]
-position = Vector2(3112, 696)
+position = Vector2(2392, 696)
 scale = Vector2(1.5, 1.5)
 
 [node name="Fore_tree_2" parent="fore parallax" instance=ExtResource("20_rcldd")]
-position = Vector2(1272, 672)
+position = Vector2(2936, 664)
 scale = Vector2(2, 2)
 
 [node name="Fore_tree_anomaly_1" parent="fore parallax" instance=ExtResource("21_805b7")]
-position = Vector2(3112.0002, 696)
+position = Vector2(3384.0002, 696)
 scale = Vector2(1.5, 1.5)
 
 [node name="Fore_tree_anomoly_2" parent="fore parallax" instance=ExtResource("22_54du1")]

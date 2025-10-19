@@ -30,7 +30,7 @@ var active_fore: Array
 
 var midpoint_green
 var midpoint_fore
-
+'''
 func _ready():
 	screen_size = get_window().size
 	midpoint_green = $"green parallax".motion_mirroring / 2.0
@@ -54,7 +54,7 @@ func _process(delta):
 		print("Camera has passed fore parallax segment to the right.")
 	if (camera_x - fore_effective_pos_x) < -midpoint_fore:
 		print("Camera has passed fore parallax parallax segment to the left.")
-
+'''
 
 '''
 # !!! IF THIS DOESN'T WORK PUT SPRITE ON PARALLAX LAYER ITSELF
