@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://rcr7gtbh76n"]
+[gd_scene load_steps=4 format=3 uid="uid://rcr7gtbh76n"]
 
 [ext_resource type="Theme" uid="uid://c4jbmdgdjflr4" path="res://UI/global.tres" id="1_nld2j"]
 [ext_resource type="Script" uid="uid://derdsqcmymd5x" path="res://scenes/States/end_scene.gd" id="1_s7dif"]
+[ext_resource type="Texture2D" uid="uid://dr8qcmehbc7cc" path="res://assets/Background/sky.png" id="2_b5b61"]
 
 [node name="EndScene" type="Node2D"]
 script = ExtResource("1_s7dif")
+
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(955, 541.5)
+scale = Vector2(1.98542, 3.9963)
+texture = ExtResource("2_b5b61")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -25,6 +31,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 407.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64

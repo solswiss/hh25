@@ -7,7 +7,7 @@ radius = 13.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = null
-frame_progress = 0.289103
+frame_progress = 0.0472683
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 6)
