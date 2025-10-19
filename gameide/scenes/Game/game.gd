@@ -56,6 +56,7 @@ signal score_update(score)
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Background.get_node("ground").texture.get_height()
+	print(ground_height)
 	#$GameOver.get_node("Button").pressed.connect(new_game) #when button pressed call new_game
 	new_game()
 

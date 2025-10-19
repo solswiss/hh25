@@ -24,26 +24,17 @@ text = "000000000"
 layout_mode = 2
 text = "000000000"
 
-[node name="Container" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="StartLabel" type="Label" parent="Container"]
+[node name="StartLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -374.0
-offset_top = -60.0
-offset_right = 374.0
+offset_left = 600.0
+offset_top = 968.0
+offset_right = 1348.0
+offset_bottom = 1028.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Press any key to start"

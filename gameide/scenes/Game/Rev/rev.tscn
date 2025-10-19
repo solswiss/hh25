@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://biv8orwwo77bt" path="res://assets/Rev/rev_idle.png" id="1_ka8rl"]
 [ext_resource type="Texture2D" uid="uid://uugpk1srijeu" path="res://assets/Rev/rev_kf.png" id="2_sepv3"]
-[ext_resource type="Texture2D" uid="uid://1gsng8m175mr" path="res://assets/rev/rev_ollie.png" id="3_ka8rl"]
+[ext_resource type="Texture2D" uid="uid://1gsng8m175mr" path="res://assets/Rev/rev_ollie.png" id="3_ka8rl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5g8s"]
 atlas = ExtResource("1_ka8rl")
@@ -159,10 +159,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qr1as")
 }, {
-"duration": 1.4,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2dtbl")
 }, {
-"duration": 0.8,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_f8oyk")
 }, {
 "duration": 1.0,
@@ -183,7 +183,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_stjii")
 }, {
-"duration": 1.2,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dkbj1")
 }, {
 "duration": 1.0,
@@ -241,8 +241,6 @@ height = 80.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lk0nv")
 animation = &"KICKFLIP"
-frame = 2
-frame_progress = 0.8770213
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
