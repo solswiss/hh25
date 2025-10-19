@@ -45,5 +45,6 @@ func _physics_process(delta):
 					$AnimatedSprite2D.play("OLLIE")
 				else:
 					$AnimatedSprite2D.play("IDLE")
+					$AnimatedSprite2D.play("IDLE")
 			elif not Input.is_anything_pressed():
 				released = true
