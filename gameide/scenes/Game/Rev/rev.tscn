@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://bp1x3yvx300gc"]
+[gd_scene load_steps=37 format=3 uid="uid://bp1x3yvx300gc"]
 
 [ext_resource type="Texture2D" uid="uid://biv8orwwo77bt" path="res://assets/Rev/rev_idle.png" id="1_ka8rl"]
+[ext_resource type="Script" uid="uid://blgotri0douqe" path="res://scenes/Game/Rev/rev.gd" id="1_sepv3"]
 [ext_resource type="Texture2D" uid="uid://uugpk1srijeu" path="res://assets/Rev/rev_kf.png" id="2_sepv3"]
 [ext_resource type="Texture2D" uid="uid://1gsng8m175mr" path="res://assets/Rev/rev_ollie.png" id="3_ka8rl"]
 
@@ -238,10 +239,11 @@ height = 80.0
 
 [node name="Rev" type="CharacterBody2D"]
 texture_filter = 1
+script = ExtResource("1_sepv3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lk0nv")
-animation = &"KICKFLIP"
+animation = &"OLLIE"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
