@@ -142,6 +142,7 @@ func check_high_score():
 	if score > high_score:
 		high_score = score
 		$HUD.get_node("HighScoreLabel").text = "HIGH SCORE: " + str(high_score)
+		Global.set_high_score(score)
 
 func adjust_difficulty():
 	difficulty = score/SPEED_MODIFIER
