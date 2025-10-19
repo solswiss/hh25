@@ -60,6 +60,7 @@ func new_game():
 	$Ground.position = Vector2i(0, 0)
 	
 	$HUD.get_node("StartLabel").show()
+	$HUD.get_node("HighScoreLabel").text = Global.high_score
 	$GameOver.hide()
 
 #called every frame; delta is elasped time since last frame

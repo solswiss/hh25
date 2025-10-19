@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://dlk2y76qh57sc"]
+[gd_scene load_steps=2 format=3 uid="uid://dlk2y76qh57sc"]
+
+[ext_resource type="Theme" uid="uid://c4jbmdgdjflr4" path="res://global.tres" id="1_ahhtf"]
 
 [node name="HUD" type="CanvasLayer"]
 
 [node name="ScoreLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+theme = ExtResource("1_ahhtf")
 
 [node name="HighScoreLabel" type="Label" parent="."]
 offset_right = 40.0
